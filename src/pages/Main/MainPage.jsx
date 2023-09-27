@@ -11,9 +11,9 @@ export const MainPage = () => {
   ));
 
   return (
-    <div>
+    <>
       {restaurantButtons}
       <Restarans resName={current} />
-    </div>
+    </>
   );
 };
