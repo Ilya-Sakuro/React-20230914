@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '../../components/Buttons/Button';
-import { Restaurants } from '../../components/Product/Restaurants';
+import { Restaurants } from '../../components/Restaurants/Restaurants';
+import { RestaurantTab } from '../../components/RestaurantTab/RestaurantTab';
 import { restaurants } from '../../constants/mock';
 
 export const MainPage = () => {
@@ -8,10 +8,8 @@ export const MainPage = () => {
 
   return (
     <div>
-      {restaurants.map((restaurant, index) => (
-        <Button title={restaurant.name} onClick={() => setActiveRestaurantIndex(index)} />
-      ))}
-      <Restaurants restaurantsIndex={activeRestaurantIndex} />
+      <RestaurantTab restaurants={restaurants} setActiveRestaurantIndex={setActiveRestaurantIndex} />
+      <Restaurants restaurants={restaurants} restaurantsIndex={activeRestaurantIndex} />
     </div>
   );
 };

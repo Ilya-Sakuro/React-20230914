@@ -1,7 +1,6 @@
-import { restaurants } from '../../constants/mock';
-import { Counter } from '../Buttons/Counter';
+import { Counter } from '../Counter/Counter';
 
-export const Menu = ({ menuIndex }) => {
+export const Menu = ({ restaurants, menuIndex }) => {
   return (
     <>
       {restaurants[menuIndex].menu.map(({ id, name }) => (
