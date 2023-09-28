@@ -1,7 +1,7 @@
 import { Button } from './Button';
 import { useState } from 'react';
 
-export const MenuButton = (prop) => {
+export const Counter = (prop) => {
   const [amount, setAmount] = useState(0);
 
   return (
