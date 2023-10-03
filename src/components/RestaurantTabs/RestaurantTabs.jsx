@@ -1,6 +1,6 @@
 import { Button } from '../Buttons/Button';
 
-export const RestaurantTab = ({ restaurants, setActiveRestaurantIndex }) => {
+export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex }) => {
   return (
     <div>
       {restaurants.map((restaurant, index) => (

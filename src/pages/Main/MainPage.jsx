@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Restaurants } from '../../components/Restaurants/Restaurants';
-import { RestaurantTab } from '../../components/RestaurantTab/RestaurantTab';
+import { RestaurantTabs } from '../../components/RestaurantTabs/RestaurantTabs';
 import { restaurants } from '../../constants/mock';
 
 export const MainPage = () => {
@@ -8,7 +8,7 @@ export const MainPage = () => {
 
   return (
     <div>
-      <RestaurantTab restaurants={restaurants} setActiveRestaurantIndex={setActiveRestaurantIndex} />
+      <RestaurantTabs restaurants={restaurants} setActiveRestaurantIndex={setActiveRestaurantIndex} />
       <Restaurants restaurants={restaurants} restaurantsIndex={activeRestaurantIndex} />
     </div>
   );

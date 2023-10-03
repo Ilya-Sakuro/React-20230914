@@ -1,12 +1,10 @@
-import { Counter } from '../Counter/Counter';
+import { Dish } from '../Dish/Dish';
 
 export const Menu = ({ restaurants, menuIndex }) => {
   return (
     <>
       {restaurants[menuIndex].menu.map(({ id, name }) => (
-        <li key={id}>
-          {name} <Counter />
-        </li>
+        <Dish key={id} dish={name} />
       ))}
     </>
   );
