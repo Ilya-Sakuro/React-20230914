@@ -1,8 +1,7 @@
-import classNames from 'classnames';
 import { Button } from '../Buttons/Button';
 import style from './style.module.scss';
 
-export const RestaurantTab = ({ restaurants, activeRestaurantIndex, setActiveRestaurantIndex }) => {
+export const RestaurantTabs = ({ restaurants, activeRestaurantIndex, setActiveRestaurantIndex }) => {
   return (
     <header className={style.root}>
       {restaurants.map((restaurant, index) => (
@@ -10,8 +9,9 @@ export const RestaurantTab = ({ restaurants, activeRestaurantIndex, setActiveRes
           key={restaurant.id}
           title={restaurant.name}
           onClick={() => setActiveRestaurantIndex(index)}
-          className={classNames(style.text, { [style.active]: index === activeRestaurantIndex })}
+          index={index}
           activeRestaurantIndex={activeRestaurantIndex}
+          positionButtonsTabs={style.button}
         />
       ))}
     </header>

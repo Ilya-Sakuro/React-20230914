@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Footer } from '../../components/Footer/Footer';
 import { Restaurants } from '../../components/Restaurants/Restaurants';
-import { RestaurantTab } from '../../components/RestaurantTab/RestaurantTab';
+import { RestaurantTabs } from '../../components/RestaurantTabs/RestaurantTabs';
 import { restaurants } from '../../constants/mock';
 
 export const MainPage = () => {
@@ -9,7 +9,7 @@ export const MainPage = () => {
 
   return (
     <div>
-      <RestaurantTab
+      <RestaurantTabs
         restaurants={restaurants}
         setActiveRestaurantIndex={setActiveRestaurantIndex}
         activeRestaurantIndex={activeRestaurantIndex}

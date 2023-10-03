@@ -1,3 +1,23 @@
+$color: #fa6400;
+
+.text {
+  font-family: Oswald, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  padding-bottom: 0.3125rem;
+  border-bottom: white solid;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    color: $color;
+    border-bottom: $color solid;
+  }
+}
+.active {
+  color: $color;
+  border-bottom: $color solid;
+}
+
 /* CSS */
 .button {
   align-items: center;

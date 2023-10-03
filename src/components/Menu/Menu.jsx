@@ -1,13 +1,10 @@
-import { Counter } from '../Counter/Counter';
-import style from './style.module.scss';
+import { Dish } from '../Dish/component';
 
 export const Menu = ({ restaurants, menuIndex }) => {
   return (
     <>
       {restaurants[menuIndex].menu.map(({ id, name }) => (
-        <li key={id} className={style.item}>
-          {name} <Counter />
-        </li>
+        <Dish key={id} dish={name} />
       ))}
     </>
   );
