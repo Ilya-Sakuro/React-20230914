@@ -1,7 +1,16 @@
 import classNames from 'classnames';
 import style from './style.module.scss';
 
-export const Button = ({ title, onClick, disabled, activeRestaurantIndex, index, positionButtonsTabs }) => {
+export const Button = ({
+  title,
+  onClick,
+  disabled,
+  activeRestaurantIndex,
+  index,
+  positionButtonsTabs,
+  w,
+  theme,
+}) => {
   return (
     <button
       className={classNames({
@@ -10,6 +19,8 @@ export const Button = ({ title, onClick, disabled, activeRestaurantIndex, index,
         [style.active]: index === activeRestaurantIndex,
         [style.button]: !positionButtonsTabs,
         [style.disabled]: disabled,
+        [style.width]: w,
+        [style.disabledDark]: disabled && theme === 'dark',
       })}
       onClick={onClick}
       disabled={disabled}
