@@ -11,9 +11,9 @@ export const Counter = (prop) => {
   return (
     <div className={style.root}>
       <div className={style.counter}>
-        <Button theme={theme} title="-" onClick={() => setAmount(amount - 1)} disabled={amount === 0} />
+        <Button title="-" onClick={() => setAmount(amount - 1)} disabled={amount === 0} />
         <span className={classNames(style.amount, { [style.amountDark]: theme === 'dark' })}>{amount}</span>
-        <Button theme={theme} title="+" onClick={() => setAmount(amount + 1)} disabled={amount === 5} />
+        <Button title="+" onClick={() => setAmount(amount + 1)} disabled={amount === 5} />
       </div>
     </div>
   );

@@ -5,11 +5,11 @@ import { Button } from '../Buttons/Button';
 import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 
-export const RestaurantTabs = ({ restaurants, activeRestaurantIndex, setActiveRestaurantIndex }) => {
-  const { theme, toggleThem } = useContext(ThemeContext);
+export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTub }) => {
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <header
+    <nav
       className={classNames({
         [style.root]: theme === 'default',
         [style.rootDark]: theme === 'dark',
@@ -21,11 +21,11 @@ export const RestaurantTabs = ({ restaurants, activeRestaurantIndex, setActiveRe
           title={restaurant.name}
           onClick={() => setActiveRestaurantIndex(index)}
           index={index}
-          activeRestaurantIndex={activeRestaurantIndex}
           positionButtonsTabs={style.button}
+          active={activeTub.id === restaurant.id ? style.active : ''}
         />
       ))}
-      <ThemeButton theme={theme} onClick={toggleThem} />
-    </header>
+      <ThemeButton />
+    </nav>
   );
 };

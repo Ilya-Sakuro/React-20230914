@@ -3,6 +3,7 @@ import React, { useReducer } from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { Button } from '../Buttons/Button';
+import { Rating } from '../Rating/component';
 import style from './style.module.scss';
 
 const initialState = {
@@ -81,26 +82,7 @@ export const ReviewForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div className={style.rating}>
-        <label className={style.tittle} htmlFor="rating">
-          Rating:
-        </label>
-        <div className={state.customRating}>
-          {[1, 2, 3, 4, 5].map((value) => (
-            <span
-              key={value}
-              className={classNames(style.span, {
-                [style.selected]: value <= state.rating,
-                [style.disabled]: value > state.rating,
-                [style.disabledDark]: theme === 'dark' && value > state.rating,
-              })}
-              onClick={() => handleRatingChange(value)}
-            >
-              {value}
-            </span>
-          ))}
-        </div>
-      </div>
+      <Rating state={state} onClick={handleRatingChange} />
       <div className={style.buttonBlock}>
         <Button w={style.buttonBlock} title={'Save'} onClick={handleClearForm} />
       </div>

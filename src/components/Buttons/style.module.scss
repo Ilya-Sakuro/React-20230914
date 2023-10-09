@@ -1,5 +1,3 @@
-$color: #fa6400;
-
 .text {
   font-family: Oswald, sans-serif;
   font-weight: 500;
@@ -9,13 +7,9 @@ $color: #fa6400;
   transition: all 0.3s ease-out;
 
   &:hover {
-    color: $color;
-    border-bottom: $color solid;
+    color: #fa6400;
+    border-bottom: #fa6400 solid;
   }
-}
-.active {
-  color: $color;
-  border-bottom: $color solid;
 }
 
 /* CSS */

@@ -9,12 +9,14 @@ export const MainPage = () => {
 
   return (
     <>
-      <RestaurantTabs
-        restaurants={restaurants}
-        setActiveRestaurantIndex={setActiveRestaurantIndex}
-        activeRestaurantIndex={activeRestaurantIndex}
-      />
-      <Restaurant restaurants={restaurants} restaurantsIndex={activeRestaurantIndex} />
+      <header>
+        <RestaurantTabs
+          restaurants={restaurants}
+          setActiveRestaurantIndex={setActiveRestaurantIndex}
+          activeTub={restaurants[activeRestaurantIndex]}
+        />
+      </header>
+      <Restaurant restaurants={restaurants[activeRestaurantIndex]} />
       <Footer />
     </>
   );

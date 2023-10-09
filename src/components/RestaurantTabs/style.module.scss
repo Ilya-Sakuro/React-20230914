@@ -6,7 +6,6 @@
   background-color: white;
   color: #1c1a19;
   height: 4.1875rem;
-  z-index: 9999;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.338);
 }
 .button {
@@ -22,4 +21,8 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.338);
   background-color: black;
   color: white;
+}
+.active {
+  color: #fa6400;
+  border-bottom: #fa6400 solid;
 }
