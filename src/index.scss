@@ -114,3 +114,13 @@ legend {
 body {
   background-color: rgba(247, 242, 236, 1);
 }
+html,
+body {
+  height: 100%;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}

@@ -6,9 +6,17 @@
   padding: 0.625rem 1.875rem;
   background-color: #fff;
   font-weight: 400;
+  align-items: center;
 }
 .name {
   margin-right: 0.625rem;
   color: black;
   font-weight: bolder;
+}
+.itemDark {
+  background-color: #c1c0c042;
+  color: white;
+}
+.nameDark {
+  color: white;
 }
