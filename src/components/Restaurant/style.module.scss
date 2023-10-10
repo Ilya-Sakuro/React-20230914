@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 40.625rem;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  padding: 1.25rem 1.25rem;
+}
+
+.warper {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 33%;
+  margin: 1.5625rem 0rem;
+  min-height: 31.25rem;
+  justify-content: space-evenly;
+}
+
+.list {
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.rootDark {
+  background: gray;
+}
