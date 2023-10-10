@@ -84,7 +84,7 @@ export const ReviewForm = () => {
       </div>
       <Rating state={state} onClick={handleRatingChange} />
       <div className={style.buttonBlock}>
-        <Button w={style.buttonBlock} title={'Save'} onClick={handleClearForm} />
+        <Button size="l" title={'Save'} onClick={handleClearForm} />
       </div>
     </form>
   );

@@ -7,8 +7,8 @@
   padding: 0.625rem 1.875rem;
   background-color: #fff;
   font-weight: 400;
-}
-.itemDark {
-  background-color: #c1c0c042;
-  color: white;
+  &.itemDark {
+    background-color: #c1c0c042;
+    color: white;
+  }
 }

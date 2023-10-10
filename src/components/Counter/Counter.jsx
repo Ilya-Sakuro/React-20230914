@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import classNames from 'classnames';
 
-export const Counter = (prop) => {
+export const Counter = () => {
   const [amount, setAmount] = useState(0);
   const { theme } = useContext(ThemeContext);
   return (

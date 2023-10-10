@@ -1,20 +1,25 @@
 import classNames from 'classnames';
 import { useContext } from 'react';
+
 import { ThemeContext } from '../../contexts/ThemeContext';
 import style from './style.module.scss';
 
-export const Button = ({ title, onClick, disabled, active, positionButtonsTabs, w }) => {
+export const Button = ({
+  title,
+  onClick,
+  disabled,
+  isActive,
+  className,
+  viewVariant = 'buttonBase',
+  size = 'm',
+}) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <button
-      className={classNames(active, {
-        [style.text]: positionButtonsTabs,
-        [positionButtonsTabs]: positionButtonsTabs,
-        [style.button]: !positionButtonsTabs,
-        [style.disabled]: disabled,
-        [style.width]: w,
-        [style.disabledDark]: disabled && theme === 'dark',
+      className={classNames(className, style[size], style[viewVariant], {
+        [style.active]: isActive,
+        [style.dark]: !isActive && theme === 'dark',
       })}
       onClick={onClick}
       disabled={disabled}

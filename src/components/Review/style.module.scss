@@ -7,16 +7,16 @@
   background-color: #fff;
   font-weight: 400;
   align-items: center;
+  &.itemDark {
+    background-color: #c1c0c042;
+    color: white;
+  }
 }
 .name {
   margin-right: 0.625rem;
   color: black;
   font-weight: bolder;
-}
-.itemDark {
-  background-color: #c1c0c042;
-  color: white;
-}
-.nameDark {
-  color: white;
+  &.nameDark {
+    color: white;
+  }
 }
