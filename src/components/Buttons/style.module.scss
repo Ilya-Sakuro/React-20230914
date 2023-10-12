@@ -1,19 +1,30 @@
-.text {
+.buttonAccent {
   font-family: Oswald, sans-serif;
   font-weight: 500;
   letter-spacing: 0;
   padding-bottom: 0.3125rem;
   border-bottom: white solid;
-  transition: all 0.3s ease-out;
-
   &:hover {
+    color: #fa6400;
+    border-bottom: #fa6400 solid;
+    transition: all 0.3s ease-out;
+  }
+  &.dark {
+    border-bottom: rgb(0, 0, 0) solid;
+    &:hover {
+      color: #fa6400;
+      border-bottom: #fa6400 solid;
+      transition: all 0.3s ease-out;
+    }
+  }
+  &.active {
     color: #fa6400;
     border-bottom: #fa6400 solid;
   }
 }
 
 /* CSS */
-.button {
+.buttonBase {
   align-items: center;
   background-clip: padding-box;
   background-color: #fa6400;
@@ -50,41 +61,45 @@
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     transform: translateY(0);
   }
-}
-.disabled {
-  color: #0000003e;
-  background-color: rgba(51, 51, 51, 0.05);
-  &:hover {
+  &:disabled {
+    color: #0000003e;
     background-color: rgba(51, 51, 51, 0.05);
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    &:hover {
+      background-color: rgba(189, 23, 23, 0.05);
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    }
+    &:hover {
+      transform: translateY(0);
+    }
+    &:active {
+      background-color: rgba(51, 51, 51, 0.05);
+      box-shadow: rgba(251, 250, 250, 0.06) 0 2px 4px;
+      transform: translateY(0);
+    }
   }
-  &:hover {
-    transform: translateY(0);
+  &.dark {
+    &:disabled {
+      color: #00000073;
+      background-color: #ffffff59;
+      &:hover {
+        background-color: #ffffff59;
+        box-shadow: #0000001a 0 4px 12px;
+      }
+      &:hover {
+        transform: translateY(0);
+      }
+      &:active {
+        background-color: #ffffff59;
+        box-shadow: #fbfafa0f 0 2px 4px;
+        transform: translateY(0);
+      }
+    }
   }
-  &:active {
-    background-color: rgba(51, 51, 51, 0.05);
-    box-shadow: rgba(251, 250, 250, 0.06) 0 2px 4px;
-    transform: translateY(0);
-  }
-}
-.width {
-  width: 6.25rem;
-  padding: 0.9375rem 0rem;
 }
 
-.disabledDark {
-  color: rgb(0 0 0 / 45%);
-  background-color: rgb(255 255 255 / 35%);
-  &:hover {
-    background-color: rgba(51, 51, 51, 0.05);
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  }
-  &:hover {
-    transform: translateY(0);
-  }
-  &:active {
-    background-color: rgba(51, 51, 51, 0.05);
-    box-shadow: rgba(251, 250, 250, 0.06) 0 2px 4px;
-    transform: translateY(0);
-  }
+.m {
+  font-size: inherit;
+}
+.l {
+  width: 50%;
 }

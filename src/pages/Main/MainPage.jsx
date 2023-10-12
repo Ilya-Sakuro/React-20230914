@@ -13,7 +13,7 @@ export const MainPage = () => {
         <RestaurantTabs
           restaurants={restaurants}
           setActiveRestaurantIndex={setActiveRestaurantIndex}
-          activeTub={restaurants[activeRestaurantIndex]}
+          activeTab={restaurants[activeRestaurantIndex]}
         />
       </header>
       <Restaurant restaurants={restaurants[activeRestaurantIndex]} />

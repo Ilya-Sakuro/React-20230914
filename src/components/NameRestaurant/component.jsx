@@ -5,6 +5,7 @@ export const NameRestaurant = ({ name }) => {
   return (
     <div
       className={classNames(
+        style.titleBack,
         {
           [style.titleBack1]: name === 'Dishoom',
           [style.titleBack2]: name === 'Homeslice',

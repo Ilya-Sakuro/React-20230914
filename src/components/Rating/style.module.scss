@@ -7,8 +7,7 @@
   font-weight: bolder;
   margin-right: 1.25rem;
 }
-.customRating {
-}
+
 .span {
   color: inherit;
 }
@@ -63,30 +62,8 @@
   touch-action: manipulation;
   vertical-align: baseline;
   width: 20px;
-}
-.disabledDark {
-  align-items: center;
-  background-clip: padding-box;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25rem;
-  margin: 0;
-  max-height: 0.625rem;
-  padding: 0.75rem 0.75rem;
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: 20px;
-  color: rgba(0, 0, 0, 0.45);
-  background-color: rgba(255, 255, 255, 0.35);
+  &.disabledDark {
+    color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(255, 255, 255, 0.35);
+  }
 }

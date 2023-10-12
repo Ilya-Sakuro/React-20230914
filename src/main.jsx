@@ -4,7 +4,9 @@ import { MainPage } from './pages/Main/MainPage';
 import './index.scss';
 import { ThemeProvider } from './contexts/ThemeContext';
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider>
-    <MainPage />
-  </ThemeProvider>
+  <React.StrictMode>
+    <ThemeProvider>
+      <MainPage />
+    </ThemeProvider>
+  </React.StrictMode>
 );

@@ -5,13 +5,12 @@ import { Button } from '../Buttons/Button';
 import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 
-export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTub }) => {
+export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTab }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <nav
-      className={classNames({
-        [style.root]: theme === 'default',
+      className={classNames(style.root, {
         [style.rootDark]: theme === 'dark',
       })}
     >
@@ -20,9 +19,8 @@ export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTu
           key={restaurant.id}
           title={restaurant.name}
           onClick={() => setActiveRestaurantIndex(index)}
-          index={index}
-          positionButtonsTabs={style.button}
-          active={activeTub.id === restaurant.id ? style.active : ''}
+          viewVariant="buttonAccent"
+          isActive={activeTab.id === restaurant.id}
         />
       ))}
       <ThemeButton />

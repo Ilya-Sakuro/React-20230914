@@ -11,7 +11,7 @@ export const Rating = ({ state, onClick }) => {
       <label className={style.tittle} htmlFor="rating">
         Rating:
       </label>
-      <div className={state.customRating}>
+      <div>
         {[1, 2, 3, 4, 5].map((value) => (
           <span
             key={value}
