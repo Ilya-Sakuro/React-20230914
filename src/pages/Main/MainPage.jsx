@@ -1,22 +1,23 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Footer } from '../../components/Footer/Footer';
 import { Restaurant } from '../../components/Restaurant/Restaurant';
 import { RestaurantTabs } from '../../components/RestaurantTabs/RestaurantTabs';
-import { restaurants } from '../../constants/mock';
 
 export const MainPage = () => {
-  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
+  const restaurantIds = useSelector((state) => state.restaurant.ids);
+  const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
 
   return (
     <>
       <header>
         <RestaurantTabs
-          restaurants={restaurants}
-          setActiveRestaurantIndex={setActiveRestaurantIndex}
-          activeTab={restaurants[activeRestaurantIndex]}
+          restaurantId={restaurantIds}
+          setActiveRestaurantId={setActiveRestaurantId}
+          activeTab={activeRestaurantId}
         />
       </header>
-      <Restaurant restaurants={restaurants[activeRestaurantIndex]} />
+      <Restaurant activeRestaurantId={activeRestaurantId} />
       <Footer />
     </>
   );

@@ -1,11 +1,13 @@
 import classNames from 'classnames';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { Button } from '../Buttons/Button';
 import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 
-export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTab }) => {
+export const RestaurantTabs = ({ restaurantId, setActiveRestaurantId, activeTab }) => {
+  const restaurant = useSelector((state) => state.restaurant.entities);
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -14,13 +16,13 @@ export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTa
         [style.rootDark]: theme === 'dark',
       })}
     >
-      {restaurants.map((restaurant, index) => (
+      {restaurantId.map((id) => (
         <Button
-          key={restaurant.id}
-          title={restaurant.name}
-          onClick={() => setActiveRestaurantIndex(index)}
+          key={id}
+          title={restaurant[id].name}
+          onClick={() => setActiveRestaurantId(id)}
           viewVariant="buttonAccent"
-          isActive={activeTab.id === restaurant.id}
+          isActive={activeTab === id}
         />
       ))}
       <ThemeButton />
