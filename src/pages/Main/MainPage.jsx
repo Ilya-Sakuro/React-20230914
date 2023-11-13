@@ -13,12 +13,12 @@ export const MainPage = () => {
     <>
       <header>
         <RestaurantTabs
-          restaurantId={restaurantIds}
+          restaurantIds={restaurantIds}
           setActiveRestaurantId={setActiveRestaurantId}
           activeTab={activeRestaurantId}
         />
       </header>
-      <Restaurant activeRestaurantId={activeRestaurantId} />
+      {activeRestaurantId && <Restaurant activeRestaurantId={activeRestaurantId} />}
       <Footer />
     </>
   );

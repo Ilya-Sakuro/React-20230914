@@ -5,7 +5,7 @@ import { Tab } from '../Tab/component';
 import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 
-export const RestaurantTabs = ({ restaurantId, setActiveRestaurantId, activeTab }) => {
+export const RestaurantTabs = ({ restaurantIds, setActiveRestaurantId, activeTab }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -14,7 +14,7 @@ export const RestaurantTabs = ({ restaurantId, setActiveRestaurantId, activeTab 
         [style.rootDark]: theme === 'dark',
       })}
     >
-      {restaurantId.map((id) => (
+      {restaurantIds.map((id) => (
         <Tab key={id} tabId={id} setActiveRestaurantId={setActiveRestaurantId} activeTab={activeTab} />
       ))}
       <ThemeButton />
