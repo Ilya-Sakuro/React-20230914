@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { Button } from '../Buttons/Button';
+import { Tab } from '../Tab/component';
 import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 
-export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTab }) => {
+export const RestaurantTabs = ({ restaurantIds, setActiveRestaurantId, activeTab }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -14,14 +14,8 @@ export const RestaurantTabs = ({ restaurants, setActiveRestaurantIndex, activeTa
         [style.rootDark]: theme === 'dark',
       })}
     >
-      {restaurants.map((restaurant, index) => (
-        <Button
-          key={restaurant.id}
-          title={restaurant.name}
-          onClick={() => setActiveRestaurantIndex(index)}
-          viewVariant="buttonAccent"
-          isActive={activeTab.id === restaurant.id}
-        />
+      {restaurantIds.map((id) => (
+        <Tab key={id} tabId={id} setActiveRestaurantId={setActiveRestaurantId} activeTab={activeTab} />
       ))}
       <ThemeButton />
     </nav>

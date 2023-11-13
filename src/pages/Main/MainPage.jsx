@@ -1,22 +1,24 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Footer } from '../../components/Footer/Footer';
 import { Restaurant } from '../../components/Restaurant/Restaurant';
 import { RestaurantTabs } from '../../components/RestaurantTabs/RestaurantTabs';
-import { restaurants } from '../../constants/mock';
+import { selectRestaurantIds } from '../../redux/entities/restaurant/selectors';
 
 export const MainPage = () => {
-  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
+  const restaurantIds = useSelector((state) => selectRestaurantIds(state));
+  const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
 
   return (
     <>
       <header>
         <RestaurantTabs
-          restaurants={restaurants}
-          setActiveRestaurantIndex={setActiveRestaurantIndex}
-          activeTab={restaurants[activeRestaurantIndex]}
+          restaurantIds={restaurantIds}
+          setActiveRestaurantId={setActiveRestaurantId}
+          activeTab={activeRestaurantId}
         />
       </header>
-      <Restaurant restaurants={restaurants[activeRestaurantIndex]} />
+      {activeRestaurantId && <Restaurant activeRestaurantId={activeRestaurantId} />}
       <Footer />
     </>
   );
