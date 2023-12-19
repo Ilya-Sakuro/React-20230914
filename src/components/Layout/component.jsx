@@ -4,7 +4,9 @@ import { RestaurantTabs } from '../RestaurantTabs/RestaurantTabs';
 export const Layout = ({ children }) => {
   return (
     <>
-      <RestaurantTabs />
+      <header>
+        <RestaurantTabs />
+      </header>
       {children}
       <Footer />
     </>

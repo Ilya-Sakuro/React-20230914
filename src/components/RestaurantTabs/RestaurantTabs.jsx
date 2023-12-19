@@ -8,9 +8,9 @@ import { Tab } from '../Tab/component';
 import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 
-export const RestaurantTabs = ({ activeTab }) => {
+export const RestaurantTabs = () => {
   const restaurantIds = useSelector((state) => selectRestaurantIds(state));
-  const { setActiveRestaurantId } = useContext(RestaurantContext);
+  const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -20,7 +20,12 @@ export const RestaurantTabs = ({ activeTab }) => {
       })}
     >
       {restaurantIds.map((id) => (
-        <Tab key={id} tabId={id} setActiveRestaurantId={setActiveRestaurantId} activeTab={activeTab} />
+        <Tab
+          key={id}
+          tabId={id}
+          setActiveRestaurantId={setActiveRestaurantId}
+          activeTab={activeRestaurantId}
+        />
       ))}
       <ThemeButton />
     </nav>
