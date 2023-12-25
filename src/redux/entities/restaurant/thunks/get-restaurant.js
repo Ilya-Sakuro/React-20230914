@@ -4,8 +4,9 @@ import { selectRestaurantIds } from '../selectors';
 export const getRestaurants = createAsyncThunk(
   'restaurants/getRestaurants',
   async () => {
-    const response = fetch('http://localhost:3001/api/restaurants/');
-    return (await response).json();
+    const response = await fetch('http://localhost:3001/api/restaurants/');
+
+    return response.json();
   },
   {
     condition: (_, { getState }) => !selectRestaurantIds(getState)?.length,
