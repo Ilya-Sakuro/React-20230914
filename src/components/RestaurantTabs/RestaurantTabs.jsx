@@ -17,6 +17,8 @@ import style from './style.module.scss';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
+//TODO RestaurantTabsContainer
+
 export const RestaurantTabs = () => {
   const restaurantIds = useSelector((state) => selectRestaurantIds(state));
   const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
@@ -36,24 +38,16 @@ export const RestaurantTabs = () => {
         [style.rootDark]: theme === 'dark',
       })}
     >
-      {loadingStatus === REQUEST_STATUS.pending || loadingStatus === REQUEST_STATUS.rejected ? (
-        <Spin indicator={<LoadingOutlined style={{ fontSize: 33, color: 'black' }} spin />} />
-      ) : (
-        restaurantIds.map((id) => (
-          <Tab
-            key={id}
-            tabId={id}
-            setActiveRestaurantId={setActiveRestaurantId}
-            activeTab={activeRestaurantId}
-          />
-        ))
-      )}
+      {restaurantIds.map((id) => (
+        <Tab
+          key={id}
+          tabId={id}
+          setActiveRestaurantId={setActiveRestaurantId}
+          activeTab={activeRestaurantId}
+        />
+      ))}
 
-      {loadingStatus === REQUEST_STATUS.pending || loadingStatus === REQUEST_STATUS.rejected ? (
-        ''
-      ) : (
-        <ThemeButton />
-      )}
+      <ThemeButton />
     </nav>
   );
 };
