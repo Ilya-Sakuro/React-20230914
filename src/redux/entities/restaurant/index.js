@@ -1,6 +1,5 @@
 import { createEntityAdapter } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-
 import { REQUEST_STATUS } from '../../../constants/statusConfig';
 import { getRestaurants } from './thunks/get-restaurant';
 

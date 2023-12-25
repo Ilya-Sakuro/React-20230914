@@ -9,6 +9,6 @@ export const getRestaurants = createAsyncThunk(
     return response.json();
   },
   {
-    condition: (_, { getState }) => !selectRestaurantIds(getState)?.length,
+    condition: (_, { getState }) => !selectRestaurantIds(getState())?.length,
   }
 );
