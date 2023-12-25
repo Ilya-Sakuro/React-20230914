@@ -36,7 +36,7 @@ export const RestaurantTabs = () => {
         [style.rootDark]: theme === 'dark',
       })}
     >
-      {loadingStatus === REQUEST_STATUS.pending ? (
+      {loadingStatus === REQUEST_STATUS.pending || loadingStatus === REQUEST_STATUS.rejected ? (
         <Spin indicator={<LoadingOutlined style={{ fontSize: 33, color: 'black' }} spin />} />
       ) : (
         restaurantIds.map((id) => (
@@ -49,7 +49,11 @@ export const RestaurantTabs = () => {
         ))
       )}
 
-      {loadingStatus === REQUEST_STATUS.pending ? '' : <ThemeButton />}
+      {loadingStatus === REQUEST_STATUS.pending || loadingStatus === REQUEST_STATUS.rejected ? (
+        ''
+      ) : (
+        <ThemeButton />
+      )}
     </nav>
   );
 };
