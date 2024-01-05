@@ -4,22 +4,6 @@
   align-items: center;
   width: 63%;
   height: 14.0625rem;
-  &.titleBack1 {
-    background: url(https://sp-ao.shortpixel.ai/client/q_glossy,ret_img,w_2000/https://seattletravel.com/wp-content/uploads/2022/12/KoreanFoodHeader.jpg)
-      no-repeat center;
-  }
-  &.titleBack2 {
-    background: url(https://pizzerialibretto.agencydominion.net/uploads/2021/08/pizzeria-libretto-toronto-pizza-restaurant-01-1800x1080.jpg)
-      no-repeat center;
-  }
-  &.titleBack3 {
-    background: url(https://assets.bonappetit.com/photos/58ef9815f9ef2707d8e770af/master/w_1280,c_limit/morning-buns.jpg)
-      no-repeat center;
-  }
-  &.titleBack4 {
-    background: url(https://www.hawksmoornyc.com/wp-content/uploads/slider/cache/d51c34fa6638652cce6a7b968544b2d9/Carousel-5.webp)
-      no-repeat center;
-  }
 }
 .title {
   color: white;
@@ -27,5 +11,4 @@
   line-height: 25px;
   font-weight: 700;
   letter-spacing: 0px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.338);
 }

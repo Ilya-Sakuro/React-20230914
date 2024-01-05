@@ -13,3 +13,18 @@
     color: white;
   }
 }
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: rgba(68, 63, 84, 0.1);
+  padding: 0.625rem 1.875rem;
+  background-color: #fff;
+  font-weight: 400;
+  &.itemDark {
+    background-color: #c1c0c042;
+    color: white;
+  }
+}

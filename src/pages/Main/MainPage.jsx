@@ -1,25 +1,19 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Footer } from '../../components/Footer/Footer';
+import { useContext } from 'react';
+import { Layout } from '../../components/Layout/component';
 import { Restaurant } from '../../components/Restaurant/Restaurant';
-import { RestaurantTabs } from '../../components/RestaurantTabs/RestaurantTabs';
-import { selectRestaurantIds } from '../../redux/entities/restaurant/selectors';
+import { RestaurantContext } from '../../contexts/RestaurantContext';
+import style from './style.module.scss';
 
 export const MainPage = () => {
-  const restaurantIds = useSelector((state) => selectRestaurantIds(state));
-  const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
+  const { activeRestaurantId } = useContext(RestaurantContext);
 
   return (
-    <>
-      <header>
-        <RestaurantTabs
-          restaurantIds={restaurantIds}
-          setActiveRestaurantId={setActiveRestaurantId}
-          activeTab={activeRestaurantId}
-        />
-      </header>
-      {activeRestaurantId && <Restaurant activeRestaurantId={activeRestaurantId} />}
-      <Footer />
-    </>
+    <Layout>
+      {activeRestaurantId === null ? (
+        <div className={style.row}> </div>
+      ) : (
+        <Restaurant activeRestaurantId={activeRestaurantId} />
+      )}
+    </Layout>
   );
 };
