@@ -4,6 +4,7 @@ import dish from './entities/dish';
 import review from './entities/review';
 import user from './entities/user';
 import request from './ui/request';
+import cart from './ui/cart';
 import { loggerMiddleware } from './middlewares/logger';
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     review,
     user,
     request,
+    cart,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([loggerMiddleware]),
 });
