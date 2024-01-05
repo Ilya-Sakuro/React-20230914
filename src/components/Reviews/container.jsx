@@ -1,6 +1,7 @@
 import { SyncOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { REQUEST_STATUS } from '../../constants/statusConfig';
+import { useMakeRequest } from '../../hooks/use-make-request';
 import { useRequest } from '../../hooks/use-request';
 import { selectRestaurantReviewsById } from '../../redux/entities/restaurant/selectors';
 import { getReviewsByRestaurantIfNotExist } from '../../redux/entities/review/thunks/get-reveiws-by-restaurant';
@@ -11,6 +12,8 @@ export const ReviewsContainer = ({ restaurantId }) => {
   const restaurantReviews = useSelector((state) => selectRestaurantReviewsById(state, restaurantId));
   const reviewsLoadingStatus = useRequest(getReviewsByRestaurantIfNotExist, restaurantId);
   const userLoadingStatus = useRequest(getUsersIfNotExist, restaurantId);
+
+  const [creatingReviewStatus, createNewReview] = useMakeRequest();
 
   if (reviewsLoadingStatus === REQUEST_STATUS.loading || userLoadingStatus === REQUEST_STATUS.loading) {
     return (
