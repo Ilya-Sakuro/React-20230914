@@ -1,14 +1,13 @@
-import { SyncOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { selectReviewById } from '../../redux/entities/review/selectors';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useGetReviewsQuery } from '../../redux/services/api';
 import { Review } from './Review';
 
 export const ReviewContainer = ({ reviewIds }) => {
-  const review = useSelector((state) => selectReviewById(state, reviewIds));
+  const { isFetching } = useGetReviewsQuery();
 
-  if (!review) {
+  if (isFetching) {
     return (
-      <SyncOutlined
+      <LoadingOutlined
         style={{
           fontSize: 24,
           color: '#fa6400',
@@ -18,5 +17,5 @@ export const ReviewContainer = ({ reviewIds }) => {
     );
   }
 
-  return <Review review={review} />;
+  return <Review reviewIds={reviewIds} />;
 };

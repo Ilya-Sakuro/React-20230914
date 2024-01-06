@@ -1,26 +1,28 @@
 import classNames from 'classnames';
 import { useContext } from 'react';
-import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { selectRestaurantById } from '../../redux/entities/restaurant/selectors';
+import { useGetRestaurantsQuery } from '../../redux/services/api';
 import { MenuContainer } from '../Menu/container';
 import { NameRestaurant } from '../NameRestaurant/component';
 import { ReviewsContainer } from '../Reviews/container';
 import style from './style.module.scss';
 
 export const Restaurant = ({ activeRestaurantId }) => {
-  const restaurant = useSelector((state) => selectRestaurantById(state, activeRestaurantId));
+  const { data } = useGetRestaurantsQuery(undefined, {
+    selectFromResult: (result) => {
+      return { ...result, data: result?.data.find(({ id }) => id === activeRestaurantId) };
+    },
+  });
   const { theme } = useContext(ThemeContext);
-
   return (
     <main
-      style={{ backgroundImage: `url(${restaurant.img})` }}
+      style={{ backgroundImage: `url(${data.img})` }}
       className={classNames(style.root, { [style.rootDark]: theme === 'dark' })}
     >
-      <NameRestaurant name={restaurant.name} />
+      <NameRestaurant name={data.name} />
       <div className={style.warper}>
-        <MenuContainer restaurantId={restaurant.id} menuId={restaurant.menu} />
-        <ReviewsContainer restaurantId={restaurant.id} />
+        <MenuContainer restaurantId={data.id} />
+        <ReviewsContainer restaurantId={data.id} />
       </div>
     </main>
   );
