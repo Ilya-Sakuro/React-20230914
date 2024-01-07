@@ -8,7 +8,7 @@ import style from './style.module.scss';
 export const User = ({ userId }) => {
   const { data, isFetching } = useGetUsersQuery(undefined, {
     selectFromResult: (result) => {
-      return { ...result, data: result?.data.find(({ id }) => id === userId) };
+      return { ...result, data: result?.data?.find(({ id }) => id === userId) };
     },
   });
   const { theme } = useContext(ThemeContext);
@@ -24,5 +24,5 @@ export const User = ({ userId }) => {
     );
   }
 
-  return <div className={classNames(style.name, { [style.nameDark]: theme === 'dark' })}>{data.name}</div>;
+  return <div className={classNames(style.name, { [style.nameDark]: theme === 'dark' })}>{data?.name}</div>;
 };

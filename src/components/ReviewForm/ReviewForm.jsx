@@ -4,7 +4,10 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { Button } from '../Buttons/Button';
 import { Rating } from '../Rating/component';
+import { RestaurantContext } from '../../contexts/RestaurantContext';
 import style from './style.module.scss';
+import { useAddReviewsMutation } from '../../redux/services/api';
+import { useState } from 'react';
 
 const initialState = {
   name: '',
@@ -37,6 +40,9 @@ const reducer = (state, action) => {
 export const ReviewForm = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { theme } = useContext(ThemeContext);
+  const { activeRestaurantId } = useContext(RestaurantContext);
+  const [createReview, res] = useAddReviewsMutation();
+  const restaurantId = activeRestaurantId;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -48,7 +54,19 @@ export const ReviewForm = () => {
   };
 
   const handleClearForm = () => {
-    dispatch({ type: actionTypes.CLEAR_FORM });
+    createReview({
+      restaurantId,
+      newReview: {
+        userId: state.name,
+        text: state.text,
+        rating: state.rating,
+      },
+    }).then(() => {
+      console.log(res);
+      console.log(res.data); // Логирование успешного результата
+      console.log(res.error); // Логирование ошибки, если есть
+      dispatch({ type: actionTypes.CLEAR_FORM });
+    });
   };
 
   const handleRatingChange = (newRating) => {

@@ -1,11 +1,11 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { useGetReviewsQuery } from '../../redux/services/api';
+import { useGetReviewsQuery, useGetUsersQuery } from '../../redux/services/api';
 import { Review } from './Review';
 
 export const ReviewContainer = ({ reviewIds }) => {
-  const { isFetching } = useGetReviewsQuery();
-
-  if (isFetching) {
+  const { isFetching } = useGetReviewsQuery(reviewIds);
+  const users = useGetUsersQuery();
+  if (users.isFetching) {
     return (
       <LoadingOutlined
         style={{

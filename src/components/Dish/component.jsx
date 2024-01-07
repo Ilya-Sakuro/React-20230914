@@ -5,7 +5,7 @@ import { Counter } from '../Counter/Counter';
 export const Dish = ({ dish, dishId }) => {
   const { data, isFetching } = useGetProductsQuery(undefined, {
     selectFromResult: (result) => {
-      return { ...result, data: result?.data.find(({ id }) => id === dishId) };
+      return { ...result, data: result?.data?.find(({ id }) => id === dishId) };
     },
   });
 
@@ -22,7 +22,7 @@ export const Dish = ({ dish, dishId }) => {
 
   return (
     <>
-      {data.name} <Counter dishId={data.id} />
+      {data?.name} <Counter dishId={data?.id} />
     </>
   );
 };

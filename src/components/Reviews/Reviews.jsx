@@ -7,7 +7,7 @@ import style from './style.module.scss';
 
 export const Reviews = ({ reviews }) => {
   const { theme } = useContext(ThemeContext);
-
+  // Доделать отправку отзыва протестить здесь
   return (
     <div className={style.root}>
       <h2 className={classNames(style.subtitle, { [style.subtitleDark]: theme === 'dark' })}>Reviews</h2>
