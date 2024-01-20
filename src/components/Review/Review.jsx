@@ -3,7 +3,7 @@ import { useGetReviewsQuery, useGetUsersQuery } from '../../redux/services/api';
 import { UserContainer } from '../User/container';
 
 export const Review = ({ reviewIds }) => {
-    const { data, isFetching } = useGetReviewsQuery(reviewIds, {
+    const { data, isFetching } = useGetReviewsQuery(undefined, {
         selectFromResult: result => {
             return {
                 ...result,

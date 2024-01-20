@@ -6,7 +6,7 @@ import { useGetUsersQuery } from '../../redux/services/api';
 import style from './style.module.scss';
 
 export const User = ({ userId }) => {
-    const { data, isFetching } = useGetUsersQuery(userId, {
+    const { data, isFetching } = useGetUsersQuery(undefined, {
         selectFromResult: result => {
             return {
                 ...result,
@@ -16,7 +16,7 @@ export const User = ({ userId }) => {
     });
 
     const { theme } = useContext(ThemeContext);
-    console.log(data);
+
     if (isFetching) {
         return (
             <LoadingOutlined

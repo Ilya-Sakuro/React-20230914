@@ -34,7 +34,6 @@ export const api = createApi({
             query: () => ({
                 url: `users`,
             }),
-            invalidatesTags: [{ type: 'Review', id: 'LIST' }],
         }),
         addReviews: builder.mutation({
             query: ({ restaurantId, newReview }) => ({
