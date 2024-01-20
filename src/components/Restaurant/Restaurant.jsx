@@ -10,19 +10,19 @@ import style from './style.module.scss';
 export const Restaurant = ({ activeRestaurantId }) => {
   const { data } = useGetRestaurantsQuery(undefined, {
     selectFromResult: (result) => {
-      return { ...result, data: result?.data.find(({ id }) => id === activeRestaurantId) };
+      return { ...result, data: result?.data?.find(({ id }) => id === activeRestaurantId) };
     },
   });
   const { theme } = useContext(ThemeContext);
   return (
     <main
-      style={{ backgroundImage: `url(${data.img})` }}
+      style={{ backgroundImage: `url(${data?.img})` }}
       className={classNames(style.root, { [style.rootDark]: theme === 'dark' })}
     >
-      <NameRestaurant name={data.name} />
+      <NameRestaurant name={data?.name} />
       <div className={style.warper}>
-        <MenuContainer restaurantId={data.id} />
-        <ReviewsContainer restaurantId={data.id} />
+        <MenuContainer restaurantId={data?.id} />
+        <ReviewsContainer restaurantId={data?.id} />
       </div>
     </main>
   );

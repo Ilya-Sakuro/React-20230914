@@ -3,27 +3,29 @@ import { useGetReviewsQuery, useGetUsersQuery } from '../../redux/services/api';
 import { UserContainer } from '../User/container';
 
 export const Review = ({ reviewIds }) => {
-  const { data, isFetching } = useGetReviewsQuery(reviewIds, {
-    selectFromResult: (result) => {
-      return { ...result, data: result?.data?.find(({ id }) => id === reviewIds) };
-    },
-  });
-  if (isFetching) {
+    const { data, isFetching } = useGetReviewsQuery(reviewIds, {
+        selectFromResult: result => {
+            return {
+                ...result,
+                data: result?.data?.find(({ id }) => id === reviewIds),
+            };
+        },
+    });
+    if (isFetching) {
+        return (
+            <LoadingOutlined
+                style={{
+                    fontSize: 24,
+                    color: '#fa6400',
+                }}
+                spin
+            />
+        );
+    }
     return (
-      <LoadingOutlined
-        style={{
-          fontSize: 24,
-          color: '#fa6400',
-        }}
-        spin
-      />
+        <>
+            <UserContainer userId={data?.userId} />
+            <span> {data?.text}</span>
+        </>
     );
-  }
-
-  return (
-    <>
-      <UserContainer userId={data?.userId} />
-      <span> {data?.text}</span>
-    </>
-  );
 };

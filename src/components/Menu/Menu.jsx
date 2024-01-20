@@ -11,7 +11,7 @@ export const Menu = ({ menu }) => {
     <>
       <h2 className={classNames(style.subtitle, { [style.subtitleDark]: theme === 'dark' })}>Menu</h2>
       <ul className={style.list}>
-        {menu.map((id) => (
+        {menu?.map((id) => (
           <li key={id} className={classNames(style.item, { [style.itemDark]: theme === 'dark' })}>
             <DishContainer dishId={id} />
           </li>

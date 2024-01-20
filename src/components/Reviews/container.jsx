@@ -5,12 +5,12 @@ import { Reviews } from './Reviews';
 export const ReviewsContainer = ({ restaurantId }) => {
   const { data, isFetching } = useGetRestaurantsQuery(undefined, {
     selectFromResult: (result) => {
-      return { ...result, data: result?.data.find(({ id }) => id === restaurantId) };
+      return { ...result, data: result?.data?.find(({ id }) => id === restaurantId) };
     },
   });
   if (isFetching) {
     return <LoadingOutlined style={{ fontSize: 24, color: '#fa6400' }} />;
   }
 
-  return <Reviews reviews={data.reviews} />;
+  return <Reviews reviews={data?.reviews} />;
 };
