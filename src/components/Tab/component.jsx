@@ -1,16 +1,12 @@
-import { useSelector } from 'react-redux';
-import { selectRestaurantById } from '../../redux/entities/restaurant/selectors';
 import { Button } from '../Buttons/Button';
 
-export const Tab = ({ tabId, setActiveRestaurantId, activeTab }) => {
-  const restaurant = useSelector((state) => selectRestaurantById(state, tabId));
-
+export const Tab = ({ tab, setActiveRestaurantId, activeTab }) => {
   return (
     <Button
-      title={restaurant.name}
-      onClick={() => setActiveRestaurantId(tabId)}
+      title={tab.name}
+      onClick={() => setActiveRestaurantId(tab.id)}
       viewVariant="buttonAccent"
-      isActive={activeTab === tabId}
+      isActive={activeTab === tab.id}
     />
   );
 };

@@ -1,14 +1,16 @@
-import { SyncOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { selectDishById } from '../../redux/entities/dish/selectors';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
+import { RestaurantContext } from '../../contexts/RestaurantContext';
+import { useGetProductsQuery } from '../../redux/services/api';
 import { Dish } from './component';
 
 export const DishContainer = ({ dishId }) => {
-  const dish = useSelector((state) => selectDishById(state, dishId));
+  const { activeRestaurantId } = useContext(RestaurantContext);
+  const { data, isFetching } = useGetProductsQuery(activeRestaurantId);
 
-  if (!dish) {
+  if (isFetching) {
     return (
-      <SyncOutlined
+      <LoadingOutlined
         style={{
           fontSize: 24,
           color: '#fa6400',
@@ -18,5 +20,5 @@ export const DishContainer = ({ dishId }) => {
     );
   }
 
-  return <Dish dish={dish} />;
+  return <Dish dish={data} dishId={dishId} />;
 };

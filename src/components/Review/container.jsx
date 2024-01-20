@@ -1,22 +1,20 @@
-import { SyncOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { selectReviewById } from '../../redux/entities/review/selectors';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useGetUsersQuery } from '../../redux/services/api';
 import { Review } from './Review';
 
 export const ReviewContainer = ({ reviewIds }) => {
-  const review = useSelector((state) => selectReviewById(state, reviewIds));
+    const users = useGetUsersQuery();
+    if (users.isFetching) {
+        return (
+            <LoadingOutlined
+                style={{
+                    fontSize: 24,
+                    color: '#fa6400',
+                }}
+                spin
+            />
+        );
+    }
 
-  if (!review) {
-    return (
-      <SyncOutlined
-        style={{
-          fontSize: 24,
-          color: '#fa6400',
-        }}
-        spin
-      />
-    );
-  }
-
-  return <Review review={review} />;
+    return <Review reviewIds={reviewIds} />;
 };
