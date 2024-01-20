@@ -9,12 +9,14 @@ export const api = createApi({
             query: () => ({
                 url: 'restaurants',
             }),
+            invalidatesTags: ['Review'],
         }),
         getProducts: builder.query({
             query: restaurantId => ({
                 url: `dishes?restaurantId=`,
                 params: { restaurantId },
             }),
+            invalidatesTags: ['Review'],
         }),
         getReviews: builder.query({
             query: restaurantId => ({
@@ -25,9 +27,9 @@ export const api = createApi({
                 result
                     ? [
                           ...result.map(({ id }) => ({ type: 'Review', id })),
-                          { type: 'Review', id: 'LIST' },
+                          'Review',
                       ]
-                    : [{ type: 'Review', id: 'LIST' }],
+                    : ['Review'],
         }),
 
         getUsers: builder.query({
@@ -41,7 +43,7 @@ export const api = createApi({
                 method: 'POST',
                 body: newReview,
             }),
-            invalidatesTags: [{ type: 'Review', id: 'LIST' }],
+            invalidatesTags: ['Review'],
         }),
     }),
 });

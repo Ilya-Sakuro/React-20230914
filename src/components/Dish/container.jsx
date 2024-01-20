@@ -5,20 +5,20 @@ import { useGetProductsQuery } from '../../redux/services/api';
 import { Dish } from './component';
 
 export const DishContainer = ({ dishId }) => {
-  const { activeRestaurantId } = useContext(RestaurantContext);
-  const { data, isFetching } = useGetProductsQuery(activeRestaurantId);
+    const { activeRestaurantId } = useContext(RestaurantContext);
+    const { data, isFetching } = useGetProductsQuery(activeRestaurantId);
 
-  if (isFetching) {
-    return (
-      <LoadingOutlined
-        style={{
-          fontSize: 24,
-          color: '#fa6400',
-        }}
-        spin
-      />
-    );
-  }
+    if (isFetching) {
+        return (
+            <LoadingOutlined
+                style={{
+                    fontSize: 24,
+                    color: '#fa6400',
+                }}
+                spin
+            />
+        );
+    }
 
-  return <Dish dish={data} dishId={dishId} />;
+    return <Dish dish={data} dishId={dishId} />;
 };
