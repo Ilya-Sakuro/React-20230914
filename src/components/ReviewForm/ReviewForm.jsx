@@ -2,11 +2,13 @@ import classNames from 'classnames';
 import { useReducer } from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { Button } from '../Buttons/Button';
+// import { Button } from '../Buttons/Button';
 import { Rating } from '../Rating/component';
 import { RestaurantContext } from '../../contexts/RestaurantContext';
 import style from './style.module.scss';
 import { useAddReviewsMutation } from '../../redux/services/api';
+import { Input } from 'antd';
+import { Button } from 'antd';
 
 const initialState = {
     name: '',
@@ -48,11 +50,7 @@ export const ReviewForm = () => {
         dispatch({ type: name, payload: value });
     };
 
-    const handleSubmit = event => {
-        event.preventDefault();
-    };
-
-    const handleClearForm = async () => {
+    const handleSubmit = async () => {
         await createReview({
             restaurantId,
             newReview: {
@@ -65,46 +63,67 @@ export const ReviewForm = () => {
         });
     };
 
+    const handleClearForm = async () => {};
+
     const handleRatingChange = newRating => {
         dispatch({ type: actionTypes.SET_RATING, payload: newRating });
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className={classNames(style.root, {
-                [style.rootDark]: theme === 'dark',
-            })}
-        >
-            <div className={style.nameBlock}>
-                <label className={style.tittle} htmlFor='name'>
-                    Name:
-                </label>
-                <input
-                    className={style.input}
-                    type='text'
-                    id='name'
-                    name={actionTypes.SET_NAME}
-                    value={state.name}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className={style.reviewTextBlock}>
-                <label className={style.tittle} htmlFor='text'>
-                    Review text:
-                </label>
-                <textarea
-                    className={classNames(style.input, style.textarea)}
-                    id='text'
-                    name={actionTypes.SET_TEXT}
-                    value={state.text}
-                    onChange={handleChange}
-                />
-            </div>
-            <Rating state={state} onClick={handleRatingChange} />
-            <div className={style.buttonBlock}>
-                <Button size='l' title={'Save'} onClick={handleClearForm} />
-            </div>
-        </form>
+        <div>
+            <Input
+                placeholder='Post'
+                name={actionTypes.SET_TEXT}
+                value={state.text}
+                onChange={handleChange}
+                onPressEnter={state.text.length > 0 ? handleSubmit : null}
+                style={{
+                    width: '50%',
+                }}
+            />
+            <Button
+                type='primary'
+                onClick={state.text.length > 0 ? handleSubmit : null}
+                disabled={state.text.length > 0 ? false : true}
+            >
+                Submit
+            </Button>
+        </div>
+        // <form
+        //     onSubmit={handleSubmit}
+        //     className={classNames(style.root, {
+        //         [style.rootDark]: theme === 'dark',
+        //     })}
+        // >
+        //     <div className={style.nameBlock}>
+        //         <label className={style.tittle} htmlFor='name'>
+        //             Name:
+        //         </label>
+        //         <input
+        //             className={style.input}
+        //             type='text'
+        //             id='name'
+        //             name={actionTypes.SET_NAME}
+        //             value={state.name}
+        //             onChange={handleChange}
+        //         />
+        //     </div>
+        //     <div className={style.reviewTextBlock}>
+        //         <label className={style.tittle} htmlFor='text'>
+        //             Review text:
+        //         </label>
+        //         <textarea
+        //             className={classNames(style.input, style.textarea)}
+        //             id='text'
+        //             name={actionTypes.SET_TEXT}
+        //             value={state.text}
+        //             onChange={handleChange}
+        //         />
+        //     </div>
+        //     <Rating state={state} onClick={handleRatingChange} />
+        //     <div className={style.buttonBlock}>
+        //         <Button size='l' title={'Save'} onClick={handleClearForm} />
+        //     </div>
+        // </form>
     );
 };
