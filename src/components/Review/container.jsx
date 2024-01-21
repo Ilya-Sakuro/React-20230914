@@ -1,10 +1,15 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { useGetUsersQuery } from '../../redux/services/api';
+import { useContext } from 'react';
+import { RestaurantContext } from '../../contexts/RestaurantContext';
+import { useGetReviewsQuery, useGetUsersQuery } from '../../redux/services/api';
 import { Review } from './Review';
 
 export const ReviewContainer = ({ reviewIds }) => {
+    const { activeRestaurantId } = useContext(RestaurantContext);
+    const { data, isLoading } = useGetReviewsQuery(activeRestaurantId);
+
     const users = useGetUsersQuery();
-    if (users.isFetching) {
+    if (users.isLoading && isLoading) {
         return (
             <LoadingOutlined
                 style={{
@@ -16,5 +21,5 @@ export const ReviewContainer = ({ reviewIds }) => {
         );
     }
 
-    return <Review reviewIds={reviewIds} />;
+    return <Review data={data} reviewIds={reviewIds} />;
 };

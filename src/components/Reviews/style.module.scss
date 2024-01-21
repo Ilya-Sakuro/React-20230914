@@ -1,32 +1,36 @@
 .root {
-  width: 100%;
+    width: 100%;
 }
 .list {
-  width: 100%;
-  margin: 20px 0px;
+    width: 100%;
+    margin: 20px 0px;
 }
 
 .subtitle {
-  color: #888888;
-  font-size: 25px;
-  line-height: 25px;
-  font-weight: 700;
-  letter-spacing: 0px;
-  &.subtitleDark {
-    color: white;
-  }
+    color: #888888;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    &.subtitleDark {
+        color: white;
+    }
 }
 .item {
-  display: flex;
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
-  border-color: rgba(68, 63, 84, 0.1);
-  padding: 0.625rem 1.875rem;
-  background-color: #fff;
-  font-weight: 400;
-  align-items: center;
-  &.itemDark {
-    background-color: #c1c0c042;
-    color: white;
-  }
+    display: flex;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: rgba(68, 63, 84, 0.1);
+    padding: 0.625rem 1.875rem;
+    background-color: #fff;
+    font-weight: 400;
+    align-items: center;
+    justify-content: space-between;
+    & > span:first-of-type {
+        max-width: 300px;
+    }
+    &.itemDark {
+        background-color: #c1c0c042;
+        color: white;
+    }
 }

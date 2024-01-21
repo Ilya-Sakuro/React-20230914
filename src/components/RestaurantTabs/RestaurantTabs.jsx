@@ -12,31 +12,36 @@ import { LoadingOutlined } from '@ant-design/icons';
 //TODO RestaurantTabsContainer
 
 export const RestaurantTabs = () => {
-  const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
-  const { theme } = useContext(ThemeContext);
+    const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
+    const { theme } = useContext(ThemeContext);
+    const { data, isFetching } = useGetRestaurantsQuery();
 
-  const { data, isFetching } = useGetRestaurantsQuery();
+    const renderTab = () => {
+        if (isFetching) {
+            return <LoadingOutlined style={{ fontSize: 35 }} />;
+        }
+        return (
+            <>
+                {data?.map(restaurant => (
+                    <Tab
+                        key={restaurant.id}
+                        tab={restaurant}
+                        setActiveRestaurantId={setActiveRestaurantId}
+                        activeTab={activeRestaurantId}
+                    />
+                ))}
+            </>
+        );
+    };
 
-  return (
-    <nav
-      className={classNames(style.root, {
-        [style.rootDark]: theme === 'dark',
-      })}
-    >
-      {isFetching ? (
-        <LoadingOutlined style={{ fontSize: 35 }} />
-      ) : (
-        data.map((restaurant) => (
-          <Tab
-            key={restaurant.id}
-            tab={restaurant}
-            setActiveRestaurantId={setActiveRestaurantId}
-            activeTab={activeRestaurantId}
-          />
-        ))
-      )}
-
-      <ThemeButton />
-    </nav>
-  );
+    return (
+        <nav
+            className={classNames(style.root, {
+                [style.rootDark]: theme === 'dark',
+            })}
+        >
+            {renderTab()}
+            <ThemeButton />
+        </nav>
+    );
 };

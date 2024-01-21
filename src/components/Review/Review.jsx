@@ -1,9 +1,10 @@
 import { LoadingOutlined } from '@ant-design/icons';
+import { Rate } from 'antd';
 import { useGetReviewsQuery } from '../../redux/services/api';
 import { UserContainer } from '../User/container';
 
 export const Review = ({ reviewIds }) => {
-    const { data, isFetching } = useGetReviewsQuery(undefined, {
+    const { data, isLoading } = useGetReviewsQuery(undefined, {
         selectFromResult: result => {
             return {
                 ...result,
@@ -12,7 +13,7 @@ export const Review = ({ reviewIds }) => {
         },
     });
 
-    if (isFetching) {
+    if (isLoading) {
         return (
             <LoadingOutlined
                 style={{
@@ -27,6 +28,9 @@ export const Review = ({ reviewIds }) => {
         <>
             <UserContainer userId={data?.userId} />
             <span> {data?.text}</span>
+            <span>
+                <Rate disabled defaultValue={data?.rating} />
+            </span>
         </>
     );
 };

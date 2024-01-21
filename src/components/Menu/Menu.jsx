@@ -5,18 +5,23 @@ import { DishContainer } from '../Dish/container';
 import style from './style.module.scss';
 
 export const Menu = ({ menu }) => {
-  const { theme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
-  return (
-    <>
-      <h2 className={classNames(style.subtitle, { [style.subtitleDark]: theme === 'dark' })}>Menu</h2>
-      <ul className={style.list}>
-        {menu?.map((id) => (
-          <li key={id} className={classNames(style.item, { [style.itemDark]: theme === 'dark' })}>
-            <DishContainer dishId={id} />
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+    return (
+        <>
+            <h2 className={classNames(style.subtitle, { [style.subtitleDark]: theme === 'dark' })}>
+                Menu
+            </h2>
+            <ul className={style.list}>
+                {menu?.map(id => (
+                    <li
+                        key={id}
+                        className={classNames(style.item, { [style.itemDark]: theme === 'dark' })}
+                    >
+                        <DishContainer dishId={id} />
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
 };

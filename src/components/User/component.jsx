@@ -6,7 +6,7 @@ import { useGetUsersQuery } from '../../redux/services/api';
 import style from './style.module.scss';
 
 export const User = ({ userId }) => {
-    const { data, isFetching } = useGetUsersQuery(undefined, {
+    const { data, isLoading } = useGetUsersQuery(undefined, {
         selectFromResult: result => {
             return {
                 ...result,
@@ -17,7 +17,7 @@ export const User = ({ userId }) => {
 
     const { theme } = useContext(ThemeContext);
 
-    if (isFetching) {
+    if (isLoading) {
         return (
             <LoadingOutlined
                 style={{
@@ -34,7 +34,7 @@ export const User = ({ userId }) => {
                 [style.nameDark]: theme === 'dark',
             })}
         >
-            {data?.name}
+            {data?.name ? data?.name : userId}
         </div>
     );
 };
