@@ -21,8 +21,11 @@ export const api = createApi({
             }),
             providesTags: result =>
                 result
-                    ? [...result.map(({ id }) => ({ type: 'Review', id })), 'Review']
-                    : ['Review'],
+                    ? [
+                          ...result.map(({ id }) => ({ type: 'Review', id })),
+                          { type: 'Review', id: 'LIST' },
+                      ]
+                    : [{ type: 'Review', id: 'LIST' }],
         }),
 
         getUsers: builder.query({
@@ -36,7 +39,7 @@ export const api = createApi({
                 method: 'POST',
                 body: newReview,
             }),
-            invalidatesTags: ['Review'],
+            invalidatesTags: [{ type: 'Review', id: 'LIST' }],
         }),
     }),
 });
@@ -47,4 +50,5 @@ export const {
     useGetReviewsQuery,
     useGetUsersQuery,
     useAddReviewsMutation,
+    useLazyGetRestaurantsQuery,
 } = api;

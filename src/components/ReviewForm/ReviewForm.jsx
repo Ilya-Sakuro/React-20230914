@@ -5,7 +5,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { Button } from '../Buttons/Button';
 import { RestaurantContext } from '../../contexts/RestaurantContext';
 import style from './style.module.scss';
-import { useAddReviewsMutation } from '../../redux/services/api';
+import { useAddReviewsMutation, useLazyGetRestaurantsQuery } from '../../redux/services/api';
 import { Rate } from 'antd';
 
 const initialState = {
@@ -42,6 +42,7 @@ export const ReviewForm = () => {
     const { activeRestaurantId } = useContext(RestaurantContext);
     const [createReview] = useAddReviewsMutation();
     const restaurantId = activeRestaurantId;
+    const [toggle] = useLazyGetRestaurantsQuery();
 
     const handleChange = event => {
         const { name, value } = event.target;
@@ -50,12 +51,18 @@ export const ReviewForm = () => {
     const newReview = { userId: state.name, text: state.text, rating: state.rating };
     const handleSubmit = async event => {
         event.preventDefault();
-        await createReview({
-            restaurantId,
-            newReview,
-        }).then(() => {
-            dispatch({ type: actionTypes.CLEAR_FORM });
-        });
+
+        if (state.name.length > 0 && state.text.length > 0 && state.rating !== 0) {
+            await createReview({
+                restaurantId,
+                newReview,
+            })
+                .unwrap()
+                .then(() => toggle())
+                .then(() => {
+                    dispatch({ type: actionTypes.CLEAR_FORM });
+                });
+        }
     };
 
     const handleRatingChange = newRating => {

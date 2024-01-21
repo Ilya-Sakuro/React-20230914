@@ -4,7 +4,7 @@ import { useGetReviewsQuery } from '../../redux/services/api';
 import { UserContainer } from '../User/container';
 
 export const Review = ({ reviewIds }) => {
-    const { data, isLoading } = useGetReviewsQuery(undefined, {
+    const { data, isFetching } = useGetReviewsQuery(undefined, {
         selectFromResult: result => {
             return {
                 ...result,
@@ -12,8 +12,7 @@ export const Review = ({ reviewIds }) => {
             };
         },
     });
-
-    if (isLoading) {
+    if (isFetching) {
         return (
             <LoadingOutlined
                 style={{

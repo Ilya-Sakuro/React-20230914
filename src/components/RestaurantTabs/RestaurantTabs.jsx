@@ -14,10 +14,10 @@ import { LoadingOutlined } from '@ant-design/icons';
 export const RestaurantTabs = () => {
     const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
     const { theme } = useContext(ThemeContext);
-    const { data, isFetching } = useGetRestaurantsQuery();
+    const { data, isLoading } = useGetRestaurantsQuery();
 
     const renderTab = () => {
-        if (isFetching) {
+        if (isLoading) {
             return <LoadingOutlined style={{ fontSize: 35 }} />;
         }
         return (

@@ -7,8 +7,7 @@ const store = configureStore({
         cart,
         [api.reducerPath]: api.reducer,
     },
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware().concat(api.middleware),
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
 });
 
 console.log(store.getState());
