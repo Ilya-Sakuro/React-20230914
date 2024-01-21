@@ -58,10 +58,10 @@ export const ReviewForm = () => {
                 newReview,
             })
                 .unwrap()
-                .then(() => toggle())
                 .then(() => {
                     dispatch({ type: actionTypes.CLEAR_FORM });
-                });
+                })
+                .then(() => toggle());
         }
     };
 
@@ -106,7 +106,16 @@ export const ReviewForm = () => {
             </div>
 
             <div className={style.buttonBlock}>
-                <Button size='l' title={'Save'} onClick={handleSubmit} />
+                <Button
+                    size='l'
+                    title={'Save'}
+                    onClick={handleSubmit}
+                    disabled={
+                        state.name.length > 0 && state.text.length > 0 && state.rating !== 0
+                            ? false
+                            : true
+                    }
+                />
             </div>
         </form>
     );
