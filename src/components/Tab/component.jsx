@@ -8,6 +8,7 @@ export const Tab = ({ tab, setActiveRestaurantId, activeTab }) => {
     const { theme } = useContext(ThemeContext);
 
     const setId = () => {
+        sessionStorage.setItem('activeTab', tab.id);
         setActiveRestaurantId(tab.id);
     };
 

@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 export const RestaurantContext = React.createContext();
 
 export const RestaurantProvider = ({ children }) => {
-    const [activeRestaurantId, setActiveRestaurantId] = useState(null);
+    const [activeRestaurantId, setActiveRestaurantId] = useState(
+        sessionStorage.getItem('activeTab'),
+    );
 
     return (
         <RestaurantContext.Provider value={{ activeRestaurantId, setActiveRestaurantId }}>
