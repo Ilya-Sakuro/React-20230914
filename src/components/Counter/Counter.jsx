@@ -1,6 +1,6 @@
 import { Button } from '../Buttons/Button';
 import style from './style.module.scss';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
