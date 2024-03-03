@@ -12,7 +12,7 @@ export const App = () => {
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<MainPage />} />
-                    <Route path='restaurants/:resId' element={<Restaurant />} />{' '}
+                    <Route path='restaurants/:resId' element={<Restaurant />} />
                     <Route
                         path='*'
                         element={
@@ -29,6 +29,23 @@ export const App = () => {
                         }
                     />
                 </Route>
+                <Route
+                    path='restaurants/successfully'
+                    element={
+                        <Result
+                            status='success'
+                            title='Successfully purchased some goodies. Bon appetit!'
+                            subTitle='Order number: 2017182818828182881 Your order will arrive within an hour.'
+                            extra={
+                                <Link to={'/'}>
+                                    <Button className='bg-blue-500 text-white' type='primary'>
+                                        Buy Again
+                                    </Button>
+                                </Link>
+                            }
+                        />
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );

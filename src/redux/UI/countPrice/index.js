@@ -27,8 +27,11 @@ const slice = createSlice({
                 state[dishId] -= price;
             }
         },
+        deleteCountPrice: (state, { payload }) => {
+            payload.map(id => (state[id] = 0));
+        },
     },
 });
 
-export const { incrementCountPrice, decrementCountPrice } = slice.actions;
+export const { incrementCountPrice, decrementCountPrice, deleteCountPrice } = slice.actions;
 export default slice.reducer;

@@ -8,6 +8,7 @@ import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 import { useGetRestaurantsQuery } from '../../redux/services/api';
 import { LoadingOutlined } from '@ant-design/icons';
+import { Cart } from '../Cart/Cart';
 
 //TODO RestaurantTabsContainer
 
@@ -41,6 +42,7 @@ export const RestaurantTabs = () => {
             })}
         >
             {renderTab()}
+            <Cart />
             <ThemeButton />
         </nav>
     );
