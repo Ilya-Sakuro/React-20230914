@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { selectDishAmountById } from '../../redux/UI/cart/selector';
 import { DishContainer } from '../Dish/container';
 import style from './style.module.scss';
 
@@ -21,6 +20,9 @@ export const Menu = ({ menu }) => {
 
     const onClose = () => {
         setOpen(false);
+    };
+    const sendOrder = () => {
+        console.log(JSON.stringify({ Order: 'Success' })), setOpen(false);
     };
 
     return (
@@ -58,7 +60,8 @@ export const Menu = ({ menu }) => {
                 ))}
                 <Button
                     type='primary'
-                    onClick={() => console.log(JSON.stringify({ Order: 'Success' }))}
+                    className=' bg-orange-500 hover:!bg-orange-600'
+                    onClick={sendOrder}
                 >
                     Send order
                 </Button>

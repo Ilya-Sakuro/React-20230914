@@ -1,4 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons';
+
 import { useGetProductsQuery } from '../../redux/services/api';
 import { Counter } from '../Counter/Counter';
 
@@ -22,7 +23,8 @@ export const Dish = ({ dishId }) => {
 
     return (
         <>
-            {data?.name} <Counter dishId={data?.id} />
+            <span className='min-w-40'>{data?.name}</span>
+            <Counter dishId={data?.id} price={data?.price} />
         </>
     );
 };
