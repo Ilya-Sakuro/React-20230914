@@ -10,6 +10,9 @@ const { reducer, actions } = createSlice({
         decrement: (state, { payload }) => {
             state[payload] = (state[payload] || 0) > 0 ? state[payload] - 1 : 0;
         },
+        deleteAmount: (state, { payload }) => {
+            payload.map(id => (state[id] = 0));
+        },
     },
 });
 

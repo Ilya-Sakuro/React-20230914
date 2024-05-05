@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useContext } from 'react';
+import { RestaurantContext } from '../../contexts/RestaurantContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { useGetRestaurantsQuery } from '../../redux/services/api';
 import { MenuContainer } from '../Menu/container';
@@ -7,7 +8,10 @@ import { NameRestaurant } from '../NameRestaurant/component';
 import { ReviewsContainer } from '../Reviews/container';
 import style from './style.module.scss';
 
-export const Restaurant = ({ activeRestaurantId }) => {
+export const Restaurant = () => {
+    const { activeRestaurantId } = useContext(RestaurantContext);
+
+    const { theme } = useContext(ThemeContext);
     const { data } = useGetRestaurantsQuery(undefined, {
         selectFromResult: result => {
             return {
@@ -16,7 +20,7 @@ export const Restaurant = ({ activeRestaurantId }) => {
             };
         },
     });
-    const { theme } = useContext(ThemeContext);
+
     return (
         <main
             style={{ backgroundImage: `url(${data?.img})` }}

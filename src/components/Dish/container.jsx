@@ -6,9 +6,9 @@ import { Dish } from './component';
 
 export const DishContainer = ({ dishId }) => {
     const { activeRestaurantId } = useContext(RestaurantContext);
-    const { data, isFetching } = useGetProductsQuery(activeRestaurantId);
+    const { isLoading } = useGetProductsQuery(activeRestaurantId);
 
-    if (isFetching) {
+    if (isLoading) {
         return (
             <LoadingOutlined
                 style={{
@@ -20,5 +20,5 @@ export const DishContainer = ({ dishId }) => {
         );
     }
 
-    return <Dish dish={data} dishId={dishId} />;
+    return <Dish dishId={dishId} />;
 };

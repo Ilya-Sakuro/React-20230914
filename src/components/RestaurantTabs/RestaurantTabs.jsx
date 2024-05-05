@@ -8,35 +8,42 @@ import { ThemeButton } from '../ThemeButton/component';
 import style from './style.module.scss';
 import { useGetRestaurantsQuery } from '../../redux/services/api';
 import { LoadingOutlined } from '@ant-design/icons';
+import { Cart } from '../Cart/Cart';
 
 //TODO RestaurantTabsContainer
 
 export const RestaurantTabs = () => {
-  const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
-  const { theme } = useContext(ThemeContext);
+    const { activeRestaurantId, setActiveRestaurantId } = useContext(RestaurantContext);
+    const { theme } = useContext(ThemeContext);
+    const { data, isLoading } = useGetRestaurantsQuery();
 
-  const { data, isFetching } = useGetRestaurantsQuery();
+    const renderTab = () => {
+        if (isLoading) {
+            return <LoadingOutlined style={{ fontSize: 35 }} />;
+        }
+        return (
+            <>
+                {data?.map(restaurant => (
+                    <Tab
+                        key={restaurant.id}
+                        tab={restaurant}
+                        setActiveRestaurantId={setActiveRestaurantId}
+                        activeTab={activeRestaurantId}
+                    />
+                ))}
+            </>
+        );
+    };
 
-  return (
-    <nav
-      className={classNames(style.root, {
-        [style.rootDark]: theme === 'dark',
-      })}
-    >
-      {isFetching ? (
-        <LoadingOutlined style={{ fontSize: 35 }} />
-      ) : (
-        data.map((restaurant) => (
-          <Tab
-            key={restaurant.id}
-            tab={restaurant}
-            setActiveRestaurantId={setActiveRestaurantId}
-            activeTab={activeRestaurantId}
-          />
-        ))
-      )}
-
-      <ThemeButton />
-    </nav>
-  );
+    return (
+        <nav
+            className={classNames(style.root, {
+                [style.rootDark]: theme === 'dark',
+            })}
+        >
+            {renderTab()}
+            <Cart />
+            <ThemeButton />
+        </nav>
+    );
 };

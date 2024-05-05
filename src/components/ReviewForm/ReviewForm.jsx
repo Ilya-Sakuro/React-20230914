@@ -2,13 +2,11 @@ import classNames from 'classnames';
 import { useReducer } from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
-// import { Button } from '../Buttons/Button';
-import { Rating } from '../Rating/component';
+import { Button } from '../Buttons/Button';
 import { RestaurantContext } from '../../contexts/RestaurantContext';
 import style from './style.module.scss';
-import { useAddReviewsMutation } from '../../redux/services/api';
-import { Input } from 'antd';
-import { Button } from 'antd';
+import { useAddReviewsMutation, useLazyGetRestaurantsQuery } from '../../redux/services/api';
+import { Rate } from 'antd';
 
 const initialState = {
     name: '',
@@ -44,86 +42,81 @@ export const ReviewForm = () => {
     const { activeRestaurantId } = useContext(RestaurantContext);
     const [createReview] = useAddReviewsMutation();
     const restaurantId = activeRestaurantId;
+    const [toggle] = useLazyGetRestaurantsQuery();
 
     const handleChange = event => {
         const { name, value } = event.target;
         dispatch({ type: name, payload: value });
     };
+    const newReview = { userId: state.name, text: state.text, rating: state.rating };
+    const handleSubmit = async event => {
+        event.preventDefault();
 
-    const handleSubmit = async () => {
-        await createReview({
-            restaurantId,
-            newReview: {
-                userId: state.name,
-                text: state.text,
-                rating: state.rating,
-            },
-        }).then(() => {
-            dispatch({ type: actionTypes.CLEAR_FORM });
-        });
+        if (state.name.length > 0 && state.text.length > 0 && state.rating !== 0) {
+            await createReview({
+                restaurantId,
+                newReview,
+            })
+                .unwrap()
+                .then(() => {
+                    dispatch({ type: actionTypes.CLEAR_FORM });
+                })
+                .then(() => toggle());
+        }
     };
-
-    const handleClearForm = async () => {};
 
     const handleRatingChange = newRating => {
         dispatch({ type: actionTypes.SET_RATING, payload: newRating });
     };
 
     return (
-        <div>
-            <Input
-                placeholder='Post'
-                name={actionTypes.SET_TEXT}
-                value={state.text}
-                onChange={handleChange}
-                onPressEnter={state.text.length > 0 ? handleSubmit : null}
-                style={{
-                    width: '50%',
-                }}
-            />
-            <Button
-                type='primary'
-                onClick={state.text.length > 0 ? handleSubmit : null}
-                disabled={state.text.length > 0 ? false : true}
-            >
-                Submit
-            </Button>
-        </div>
-        // <form
-        //     onSubmit={handleSubmit}
-        //     className={classNames(style.root, {
-        //         [style.rootDark]: theme === 'dark',
-        //     })}
-        // >
-        //     <div className={style.nameBlock}>
-        //         <label className={style.tittle} htmlFor='name'>
-        //             Name:
-        //         </label>
-        //         <input
-        //             className={style.input}
-        //             type='text'
-        //             id='name'
-        //             name={actionTypes.SET_NAME}
-        //             value={state.name}
-        //             onChange={handleChange}
-        //         />
-        //     </div>
-        //     <div className={style.reviewTextBlock}>
-        //         <label className={style.tittle} htmlFor='text'>
-        //             Review text:
-        //         </label>
-        //         <textarea
-        //             className={classNames(style.input, style.textarea)}
-        //             id='text'
-        //             name={actionTypes.SET_TEXT}
-        //             value={state.text}
-        //             onChange={handleChange}
-        //         />
-        //     </div>
-        //     <Rating state={state} onClick={handleRatingChange} />
-        //     <div className={style.buttonBlock}>
-        //         <Button size='l' title={'Save'} onClick={handleClearForm} />
-        //     </div>
-        // </form>
+        <form
+            onSubmit={handleSubmit}
+            className={classNames(style.root, {
+                [style.rootDark]: theme === 'dark',
+            })}
+        >
+            <div className={style.nameBlock}>
+                <label className={style.tittle} htmlFor='name'>
+                    Name:
+                </label>
+                <input
+                    className={style.input}
+                    type='text'
+                    id='name'
+                    name={actionTypes.SET_NAME}
+                    value={state.name}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className={style.reviewTextBlock}>
+                <label className={style.tittle} htmlFor='text'>
+                    Review text:
+                </label>
+                <textarea
+                    className={classNames(style.input, style.textarea)}
+                    id='text'
+                    name={actionTypes.SET_TEXT}
+                    value={state.text}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className={style.tittle}>
+                Rating: <Rate onChange={handleRatingChange} value={state.rating} />
+            </div>
+
+            <div className={style.buttonBlock}>
+                <Button
+                    size='l'
+                    title={'Save'}
+                    onClick={handleSubmit}
+                    disabled={
+                        state.name.length > 0 && state.text.length > 0 && state.rating !== 0
+                            ? false
+                            : true
+                    }
+                />
+            </div>
+        </form>
     );
 };
