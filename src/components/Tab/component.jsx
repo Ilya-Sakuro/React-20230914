@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext';
@@ -14,15 +15,15 @@ export const Tab = ({ tab, setActiveRestaurantId, activeTab }) => {
 
     return (
         <NavLink
-            to={`restaurants/${tab.name}`}
+            to={`restaurants/${tab.title}`}
             className={theme === 'dark' ? styles.dark : styles.default}
         >
             <Button
-                title={tab.name}
+                title={tab.title.split(' ').slice(0, 4).join(' ').toUpperCase()}
                 onClick={setId}
                 viewVariant='buttonAccent'
                 isActive={activeTab === tab.id}
-            />
+            />{' '}
         </NavLink>
     );
 };

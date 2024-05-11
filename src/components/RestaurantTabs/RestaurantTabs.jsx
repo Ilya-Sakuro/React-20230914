@@ -23,14 +23,16 @@ export const RestaurantTabs = () => {
         }
         return (
             <>
-                {data?.map(restaurant => (
-                    <Tab
-                        key={restaurant.id}
-                        tab={restaurant}
-                        setActiveRestaurantId={setActiveRestaurantId}
-                        activeTab={activeRestaurantId}
-                    />
-                ))}
+                {data
+                    ?.map(restaurant => (
+                        <Tab
+                            key={restaurant.id}
+                            tab={restaurant}
+                            setActiveRestaurantId={setActiveRestaurantId}
+                            activeTab={activeRestaurantId}
+                        />
+                    ))
+                    .slice(0, 4)}
             </>
         );
     };
