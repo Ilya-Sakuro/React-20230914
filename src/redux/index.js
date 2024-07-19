@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cart from './ui/cart';
+import cart from './UI/cart';
 import countPrice from './ui/countPrice';
 import { api } from './services/api';
 
